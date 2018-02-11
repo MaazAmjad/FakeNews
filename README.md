@@ -1,2 +1,2 @@
-# FakeNews
-Fake News Detection Using AI/ML/NLP
+# Artificial Intelligence model
+Using AI/ML/NLP to answer the asked Question.
