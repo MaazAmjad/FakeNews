@@ -23,7 +23,7 @@ WORD2VEC_EMBED_SIZE = 300
 QA_TRAIN_FILE = "8thGr-NDMC-Train.csv"
 
 QA_EMBED_SIZE = 64
-BATCH_SIZE = 1
+BATCH_SIZE = 32
 NBR_EPOCHS = 20
 
 ## extract data
@@ -86,7 +86,7 @@ model.add(Dense(2, activation="softmax"))
 
 model.compile(optimizer="adam", loss="categorical_crossentropy",
               metrics=["accuracy"])
-print('model trained SUCCESS!!!!!!!!!!!!!!!!!!')
+print('model compile SUCCESS!!!!!!!!!!!!!!!!!!')
 
 print("Training...")
 checkpoint = ModelCheckpoint(
@@ -101,7 +101,7 @@ loss, acc = model.evaluate([Xqtest, Xatest], Ytest, batch_size=BATCH_SIZE)
 print("Test loss/accuracy final model = %.4f, %.4f" % (loss, acc))
 
 model.save_weights(os.path.join(MODEL_DIR, "qa-blstm-attn-final.hdf5"))
-with open(os.path.join(MODEL_DIR, "qa-blstm-attn.json"), "wb") as fjson:
+with open(os.path.join(MODEL_DIR, "qa-blstm-attn.json"), "w") as fjson:
     fjson.write(model.to_json())
 
 model.load_weights(filepath=os.path.join(MODEL_DIR, "qa-blstm-attn-best.hdf5"))
